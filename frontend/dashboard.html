@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Taskora</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+</head>
+<body class="app-page">
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">Taskora<span>.</span></a>
+
+        <p class="sidebar-label">WORKSPACE</p>
+        <a class="side-link active" href="dashboard.html">▦ &nbsp; Dashboard</a>
+        <a class="side-link" href="dashboard.html#projects">▤ &nbsp; My Projects</a>
+        <a class="side-link" href="dashboard.html#notifications">♧ &nbsp; Notifications</a>
+
+        <div class="sidebar-bottom">
+            <div id="sidebarUser" class="user-mini"></div>
+            <button id="logoutButton" class="side-link logout-button">
+                ↪ &nbsp; Log out
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="muted">YOUR WORKSPACE</p>
+                <h1 id="welcomeHeading">Welcome back!</h1>
+            </div>
+            <button id="createProjectButton" class="btn btn-primary">
+                + New Project
+            </button>
+        </header>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span>My Projects</span>
+                <strong id="projectCount">0</strong>
+                <small>Your team workspaces</small>
+            </article>
+            <article class="stat-card">
+                <span>Total Tasks</span>
+                <strong id="taskCount">0</strong>
+                <small>Across your projects</small>
+            </article>
+            <article class="stat-card">
+                <span>In Progress</span>
+                <strong id="progressCount">0</strong>
+                <small>Tasks being worked on</small>
+            </article>
+            <article class="stat-card">
+                <span>Completed</span>
+                <strong id="completedCount">0</strong>
+                <small>Tasks marked done</small>
+            </article>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section-heading">
+                <div>
+                    <h2>Your projects</h2>
+                    <p class="muted">Everything your team is working on.</p>
+                </div>
+            </div>
+
+            <p id="dashboardMessage" class="form-message"></p>
+            <div id="projectGrid" class="project-grid"></div>
+        </section>
+
+        <section class="section" id="notifications">
+            <div class="section-heading">
+                <div>
+                    <h2>Recent notifications</h2>
+                    <p class="muted">Stay updated on your team's activity.</p>
+                </div>
+                <button id="markAllRead" class="btn btn-outline">
+                    Mark all read
+                </button>
+            </div>
+            <div id="notificationList" class="notification-list"></div>
+        </section>
+    </main>
+
+    <dialog id="projectDialog" class="modal">
+        <form id="projectForm">
+            <div class="modal-heading">
+                <h2>Create a project</h2>
+                <button type="button" id="closeProjectDialog"
+                        class="icon-button">✕</button>
+            </div>
+
+            <label for="projectName">Project name</label>
+            <input id="projectName" name="name" maxlength="150"
+                   placeholder="e.g. Website Redesign" required>
+
+            <label for="projectDescription">Description</label>
+            <textarea id="projectDescription" name="description"
+                      placeholder="What is this project about?"></textarea>
+
+            <p id="projectMessage" class="form-message"></p>
+            <button class="btn btn-primary full-width" type="submit">
+                Create project
+            </button>
+        </form>
+    </dialog>
+</body>
+</html>
