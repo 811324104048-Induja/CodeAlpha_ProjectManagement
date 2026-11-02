@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Board | Taskora</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/project.js" defer></script>
+</head>
+<body class="app-page board-page">
+    <header class="board-topbar">
+        <a class="brand" href="dashboard.html">Taskora<span>.</span></a>
+        <a class="btn btn-outline" href="dashboard.html">← Dashboard</a>
+    </header>
+
+    <main class="board-main">
+        <div class="board-heading">
+            <div>
+                <p class="muted">PROJECT BOARD</p>
+                <h1 id="projectTitle">Loading project...</h1>
+                <p id="projectDescription" class="muted"></p>
+            </div>
+            <button id="createTaskButton" class="btn btn-primary">
+                + Add Task
+            </button>
+        </div>
+
+        <div class="board-toolbar">
+            <div id="memberList" class="member-list"></div>
+            <button id="addMemberButton" class="btn btn-outline">
+                + Add Member
+            </button>
+        </div>
+
+        <p id="boardMessage" class="form-message"></p>
+
+        <div class="kanban-board">
+            <section class="kanban-column">
+                <h2>To Do <span id="todoCount">0</span></h2>
+                <div id="todoTasks" class="task-list"></div>
+            </section>
+
+            <section class="kanban-column">
+                <h2>In Progress <span id="progressTasksCount">0</span></h2>
+                <div id="progressTasks" class="task-list"></div>
+            </section>
+
+            <section class="kanban-column">
+                <h2>In Review <span id="reviewCount">0</span></h2>
+                <div id="reviewTasks" class="task-list"></div>
+            </section>
+
+            <section class="kanban-column">
+                <h2>Done <span id="doneCount">0</span></h2>
+                <div id="doneTasks" class="task-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <dialog id="taskDialog" class="modal">
+        <form id="taskForm">
+            <div class="modal-heading">
+                <h2 id="taskDialogTitle">Create a task</h2>
+                <button type="button" id="closeTaskDialog"
+                        class="icon-button">✕</button>
+            </div>
+
+            <label for="taskTitle">Task title</label>
+            <input id="taskTitle" name="title" maxlength="200"
+                   required placeholder="What needs to be done?">
+
+            <label for="taskDescription">Description</label>
+            <textarea id="taskDescription" name="description"></textarea>
+
+            <label for="taskAssignee">Assign to</label>
+            <select id="taskAssignee" name="assigned_to">
+                <option value="">Unassigned</option>
+            </select>
+
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" name="priority">
+                <option value="LOW">Low</option>
+                <option value="MEDIUM" selected>Medium</option>
+                <option value="HIGH">High</option>
+                <option value="URGENT">Urgent</option>
+            </select>
+
+            <label for="taskDueDate">Due date</label>
+            <input id="taskDueDate" name="due_date" type="datetime-local">
+
+            <p id="taskMessage" class="form-message"></p>
+
+            <button class="btn btn-primary full-width" type="submit">
+                Save task
+            </button>
+        </form>
+    </dialog>
+
+    <dialog id="commentDialog" class="modal">
+        <div class="modal-heading">
+            <h2 id="commentTaskTitle">Task discussion</h2>
+            <button type="button" id="closeCommentDialog"
+                    class="icon-button">✕</button>
+        </div>
+
+        <div id="commentList" class="comment-list"></div>
+
+        <form id="commentForm">
+            <label for="commentText">Write a comment</label>
+            <textarea id="commentText" required maxlength="5000"></textarea>
+            <p id="commentMessage" class="form-message"></p>
+            <button class="btn btn-primary full-width" type="submit">
+                Post comment
+            </button>
+        </form>
+    </dialog>
+
+    <dialog id="memberDialog" class="modal">
+        <form id="memberForm">
+            <div class="modal-heading">
+                <h2>Add a team member</h2>
+                <button type="button" id="closeMemberDialog"
+                        class="icon-button">✕</button>
+            </div>
+
+            <p class="muted">The person must already have a Taskora account.</p>
+
+            <label for="memberEmail">Member email</label>
+            <input id="memberEmail" type="email" required>
+
+            <label for="memberRole">Role</label>
+            <select id="memberRole">
+                <option value="MEMBER">Member</option>
+                <option value="MANAGER">Manager</option>
+            </select>
+
+            <p id="memberMessage" class="form-message"></p>
+            <button class="btn btn-primary full-width" type="submit">
+                Add member
+            </button>
+        </form>
+    </dialog>
+</body>
+</html>
